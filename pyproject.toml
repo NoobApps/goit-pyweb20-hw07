@@ -1,0 +1,18 @@
+[project]
+name = "goit-pyweb20-hw07"
+version = "0.1.0"
+description = "GoIT homework#7"
+authors = [
+    {name = "Vitaliy Ivaskiv",email = "vitalik.ivaskiv88@gmail.com"}
+]
+requires-python = ">=3.13"
+dependencies = [
+    "faker (>=40.43.0,<41.0.0)",
+    "sqlalchemy (>=2.1.4,<3.0.0)",
+    "psycopg2 (>=2.9.13,<3.0.0)"
+]
+
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
