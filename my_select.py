@@ -11,8 +11,8 @@ def select_1(session):
         average_score = func.round(func.avg(Mark.score), 3).label("average_score")
         stmt = (
             select(
-                Student.name,           # s.name
-                average_score           # round(avg(score),3) AS average_score
+                Student.name,           
+                average_score           
             )
             .join(Mark, Mark.student_id == Student.id)
             .group_by(Student.id)
@@ -130,7 +130,7 @@ def select_6(session):
             )
             .join(Group, Student.group_id == Group.id)
             .where(Group.id == 1)
-            .order_by(Student.name.asc()) # ASC is the default, but explicitly adding it for clarity
+            .order_by(Student.name.asc())
         )
         
         results = session.execute(stmt).all()
@@ -228,7 +228,7 @@ def select_10(session):
         stmt = (
             select(
                 Teacher.teacher_name, 
-                Student.name.label("student_name"),  # Use .label() to match SQL alias
+                Student.name.label("student_name"),
                 Subject.subject_name
             )
             .join(Subject, Teacher.id == Subject.teacher_id)
@@ -249,7 +249,7 @@ def select_10(session):
 
 
 if __name__ == '__main__':
-    # print(select_1(session))
+    print(select_1(session))
     # print(select_2(session))
     # print(select_3(session))
     # print(select_4(session))

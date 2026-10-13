@@ -9,7 +9,6 @@ class Group(Base):
     __tablename__ = "groups"
     id: Mapped[int] = mapped_column(primary_key=True)
     group_name: Mapped[str] = mapped_column(String(10), unique=True)
-    
 
     def __repr__(self):
         return f"<Group(name='{self.group_name}')>"
