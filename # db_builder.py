@@ -1,7 +1,5 @@
 # db_builder_sqla.py
 import psycopg2
-import sqlite3
-import os
 from typing import List
 from faker import Faker
 from random import randint
@@ -12,11 +10,7 @@ from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column, Session
 
 # --- Configuration and Setup ---
 fake = Faker()
-DB_FILE = "data_sqla.db"
 
-# Ensure old file is removed for a clean run
-if os.path.exists(DB_FILE):
-    os.remove(DB_FILE)
 
 SUBJECTS = ["Math", "Science", "History", "Art", "Music", "Chemistry", "Geography"]
 TEACHERS = [fake.name() for _ in range(5)]
