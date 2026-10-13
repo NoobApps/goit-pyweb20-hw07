@@ -249,7 +249,7 @@ def select_10(session):
 
 
 if __name__ == '__main__':
-    print(select_1(session))
+    # print(select_1(session))
     # print(select_2(session))
     # print(select_3(session))
     # print(select_4(session))
