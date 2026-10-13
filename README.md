@@ -1,4 +1,10 @@
-docker compose up -d\n
-alembic revision --autogenerate -m 'Init'\n
-alembic upgrade head\n
+docker compose up -d
+
+
+alembic revision --autogenerate -m 'Init'
+
+
+alembic upgrade head
+
+
 python seed.py
