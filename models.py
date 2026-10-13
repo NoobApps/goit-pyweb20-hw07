@@ -1,5 +1,5 @@
 from sqlalchemy import  Integer, String, ForeignKey, Date, func
-from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column
+from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column, relationship
 
 
 class Base(DeclarativeBase):
@@ -9,6 +9,7 @@ class Group(Base):
     __tablename__ = "groups"
     id: Mapped[int] = mapped_column(primary_key=True)
     group_name: Mapped[str] = mapped_column(String(10), unique=True)
+    students: Mapped[list["Student"]] = relationship("Student", back_populates="group")
 
     def __repr__(self):
         return f"<Group(name='{self.group_name}')>"
@@ -17,6 +18,7 @@ class Teacher(Base):
     __tablename__ = "teachers"
     id: Mapped[int] = mapped_column(primary_key=True)
     teacher_name: Mapped[str] = mapped_column(String(50))
+    subjects: Mapped[list["Subject"]] = relationship("Subject", back_populates="teacher")
 
     def __repr__(self):
         return f"<Teacher(name='{self.teacher_name}')>"
@@ -27,6 +29,8 @@ class Subject(Base):
     subject_name: Mapped[str] = mapped_column(String(10))
     # Foreign Key referencing Teacher
     teacher_id: Mapped[int] = mapped_column(ForeignKey("teachers.id"))
+    teacher: Mapped["Teacher"] = relationship("Teacher", back_populates="subjects")
+    marks: Mapped[list["Mark"]] = relationship("Mark", back_populates="subject")
 
     def __repr__(self):
         return f"<Subject(name='{self.subject_name}')>"
@@ -37,6 +41,8 @@ class Student(Base):
     name: Mapped[str] = mapped_column(String(30))
     # Foreign Key referencing Group
     group_id: Mapped[int] = mapped_column(ForeignKey("groups.id"))
+    group: Mapped["Group"] = relationship("Group", back_populates="students")
+    marks: Mapped[list["Mark"]] = relationship("Mark", back_populates="student")
 
     def __repr__(self):
         return f"<Student(name='{self.name}')>"
@@ -49,6 +55,8 @@ class Mark(Base):
     subject_id: Mapped[int] = mapped_column(ForeignKey("subjects.id"))
     student_id: Mapped[int] = mapped_column(ForeignKey("students.id"))
     date: Mapped[Date] = mapped_column(Date, default=func.now())
+    subject: Mapped["Subject"] = relationship("Subject", back_populates="marks")
+    student: Mapped["Student"] = relationship("Student", back_populates="marks")
 
     def __repr__(self):
         return f"<Mark(score={self.score}, student_id={self.student_id})>"
