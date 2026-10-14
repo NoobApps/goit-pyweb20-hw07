@@ -1,6 +1,6 @@
 from connect_db import session
-from models import *
-from sqlalchemy import select, and_, desc, func
+from models import Group, Student, Subject, Teacher, Mark
+from sqlalchemy import select, desc, func
 from sqlalchemy.exc import SQLAlchemyError
 
 def select_1(session):
@@ -249,13 +249,13 @@ def select_10(session):
 
 
 if __name__ == '__main__':
-    # print(select_1(session))
-    # print(select_2(session))
-    # print(select_3(session))
-    # print(select_4(session))
-    # print(select_5(session))
-    # print(select_6(session))
-    # print(select_7(session))
-    # print(select_8(session))
-    # print(select_9(session))
-    # print(select_10(session))
+    print(select_1(session))
+    print(select_2(session))
+    print(select_3(session))
+    print(select_4(session))
+    print(select_5(session))
+    print(select_6(session))
+    print(select_7(session))
+    print(select_8(session))
+    print(select_9(session))
+    print(select_10(session))
